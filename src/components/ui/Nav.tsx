@@ -1,11 +1,7 @@
-import React from "react";
-
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
-  Link,
   Input,
   DropdownItem,
   DropdownTrigger,
@@ -13,14 +9,16 @@ import {
   DropdownMenu,
   Avatar,
 } from "@nextui-org/react";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
   return (
     <Navbar isBordered>
       <NavbarContent justify="start">
         <NavbarBrand className="mr-4">
-          ACME
-          <p className="hidden sm:block font-bold text-inherit">ACME</p>
+          <Link to="/" className="hidden sm:block font-bold text-inherit">
+            ACME
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 

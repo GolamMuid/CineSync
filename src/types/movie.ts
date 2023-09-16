@@ -8,3 +8,8 @@ export type IMovie = {
 export type IMovieCardProps = {
   movie: IMovie;
 };
+
+export type IGenre = {
+  id: number;
+  name: string;
+};

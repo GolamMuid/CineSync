@@ -1,12 +1,13 @@
-import { Chip, CircularProgress, Image, ScrollShadow } from "@nextui-org/react";
+import { Chip, Image } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
 import { useParams } from "react-router-dom";
+import "../App.css";
+import { IGenre } from "../types/movie";
+import Loader from "../components/ui/loader/Loader";
 
 function MovieDetail() {
   const { id } = useParams();
-  console.log(id);
 
   const { isLoading, data: movieDetail } = useQuery({
     queryKey: ["movieDetail"],
@@ -29,26 +30,30 @@ function MovieDetail() {
   return (
     <div>
       {isLoading ? (
-        <CircularProgress size="lg" aria-label="Loading..." />
+        <Loader />
       ) : (
-        <div>
-          {/* <Image
-            src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
-          /> */}
+        <div className="mt-4">
+          <div className="max-h-[400px] overflow-hidden relative">
+            <img
+              src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
+              className="hidden md:block"
+            />
+            <div className="overlay"></div>
+          </div>
 
           <div className="flex flex-col items-start gap-4 md:flex-row">
-            <div>
+            <div className="w-full p-4">
               <Image
                 shadow="sm"
                 radius="lg"
                 width="100%"
                 alt={movieDetail.title}
-                className="object-cover "
-                // src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
+                className="object-cover m-auto max-w-[500px]"
+                src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
               />
             </div>
-            <div className="flex flex-col gap-2">
-              {/* <p className="font-bold text-4xl">{movieDetail.original_title}</p> */}
+            <div className="flex flex-col gap-2 p-4">
+              <p className="font-bold text-5xl">{movieDetail.original_title}</p>
               <p className="font-bold ">{movieDetail.tagline}</p>
               <div>
                 <span className="font-medium"> Release Date : </span>
@@ -74,7 +79,7 @@ function MovieDetail() {
               </div>
 
               <div>
-                {movieDetail.genres.map((genre) => {
+                {movieDetail.genres.map((genre: IGenre) => {
                   return (
                     <Chip
                       color="primary"

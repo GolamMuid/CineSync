@@ -12,12 +12,17 @@ const MovieCard: React.FC<IMovieCardProps> = ({ movie }) => {
   };
 
   return (
-    <Link to={`/${movie.id}`}>
-      <Card shadow="sm" isPressable onPress={() => handleClick(movie.id)}>
-        <CardBody className="overflow-visible p-0">
+    <Card
+      shadow="sm"
+      isPressable
+      onPress={() => handleClick(movie.id)}
+      className="w-fit"
+    >
+      <Link to={`/${movie.id}`}>
+        <CardBody className="overflow-visible p-0 ">
           <Image
-            shadow="sm"
-            radius="lg"
+            // shadow="sm"
+            // radius="sm"
             width="100%"
             alt={movie.title}
             className="w-full object-cover h-[480px] sm:h-[360px]"
@@ -28,8 +33,8 @@ const MovieCard: React.FC<IMovieCardProps> = ({ movie }) => {
           <b>{movie.title}</b>
           <p className="text-default-500">{movie.vote_average}</p>
         </CardFooter>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 };
 
