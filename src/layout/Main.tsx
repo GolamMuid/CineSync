@@ -1,11 +1,14 @@
-import { ReactNode } from "react";
+// import { ReactNode } from "react";
 import Nav from "../components/ui/Nav";
+import { Outlet } from "react-router-dom";
 
-function Main({ children }: { children: ReactNode }) {
+function Main() {
   return (
-    <div className="w-full bg-black">
+    <div className="w-full bg-black text-white min-h-screen">
       <Nav />
-      <div className="max-w-[1080px] m-auto">{children}</div>
+      <div className="max-w-[1080px] m-auto">
+        <Outlet />
+      </div>
     </div>
   );
 }

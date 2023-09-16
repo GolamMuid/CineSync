@@ -25,7 +25,7 @@ function Home() {
   return (
     <>
       {!isLoading && (
-        <div className="gap-4 grid grid-cols-2 sm:grid-cols-4">
+        <div className="gap-4 p-4 mt-8 grid grid-cols-1 sm:grid-cols-4">
           {movieData.map((movie: IMovie, index: number) => (
             <MovieCard movie={movie} key={index} />
           ))}

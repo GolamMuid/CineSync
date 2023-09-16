@@ -1,22 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Main from "../layout/Main";
+import MovieDetail from "../pages/MovieDetail";
 
 const router = createBrowserRouter([
   {
-    element: (
-      <Main>
-        {" "}
-        <Home />{" "}
-      </Main>
-    ),
+    element: <Main></Main>,
     path: "/",
-    // children: [
-    //   {
-    //     path: "/",
-    //     element: <Home />,
-    //   },
-    // ],
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/:id",
+        element: <MovieDetail />,
+      },
+    ],
   },
 ]);
 
