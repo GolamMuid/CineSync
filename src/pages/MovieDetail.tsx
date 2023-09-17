@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Chip, Image } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -8,8 +9,13 @@ import Loader from "../components/ui/loader/Loader";
 
 function MovieDetail() {
 	const { id } = useParams();
+	console.log("🚀 ~ file: MovieDetail.tsx:11 ~ MovieDetail ~ id:", id);
 
-	const { isLoading, data: movieDetail } = useQuery({
+	const {
+		isLoading,
+		data: movieDetail,
+		refetch,
+	} = useQuery({
 		queryKey: ["movieDetail"],
 		queryFn: async () => {
 			const res = await axios.get(
@@ -25,6 +31,12 @@ function MovieDetail() {
 		},
 	});
 
+	useEffect(() => {
+		refetch();
+	}, [id, refetch]);
+
+	// console.log(movieDetail.original_title);
+
 	return (
 		<div>
 			{isLoading ? (
@@ -33,7 +45,7 @@ function MovieDetail() {
 				<div className="mt-4">
 					<div className="max-h-[400px] overflow-hidden relative">
 						<img
-							src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
+							// src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
 							className="hidden md:block"
 						/>
 						<div className="overlay"></div>
@@ -47,7 +59,7 @@ function MovieDetail() {
 								width="100%"
 								alt={movieDetail.title}
 								className="object-cover m-auto max-w-[500px]"
-								src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
+								// src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
 							/>
 						</div>
 						<div className="flex flex-col gap-2 p-4">

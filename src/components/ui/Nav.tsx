@@ -17,9 +17,18 @@ import { BiSearch } from "react-icons/bi";
 
 interface NavProps {
 	setSearch: React.Dispatch<React.SetStateAction<string>>;
+	setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Nav: React.FC<NavProps> = ({ setSearch }) => {
+const Nav: React.FC<NavProps> = ({ setSearch, setIsFocused }) => {
+	const handleFocus = () => {
+		setIsFocused(true);
+	};
+
+	const handleBlur = () => {
+		setIsFocused(false);
+	};
+
 	const [scrolled, setScrolled] = useState<boolean>(false);
 
 	window.addEventListener("scroll", () => {
@@ -57,6 +66,8 @@ const Nav: React.FC<NavProps> = ({ setSearch }) => {
 					placeholder="Type to search..."
 					size="sm"
 					onChange={(e) => setSearch(e.target.value)}
+					onFocus={handleFocus}
+					onBlur={handleBlur}
 					startContent={<BiSearch size={18} />}
 					type="search"
 				/>
