@@ -18,15 +18,19 @@ import { BiSearch } from "react-icons/bi";
 interface NavProps {
 	setSearch: React.Dispatch<React.SetStateAction<string>>;
 	setIsFocused: React.Dispatch<React.SetStateAction<boolean>>;
+	search: string;
 }
 
-const Nav: React.FC<NavProps> = ({ setSearch, setIsFocused }) => {
+const Nav: React.FC<NavProps> = ({ search, setSearch, setIsFocused }) => {
 	const handleFocus = () => {
 		setIsFocused(true);
 	};
 
 	const handleBlur = () => {
-		setIsFocused(false);
+		// Delay the blur event by a small amount of time
+		setTimeout(() => {
+			setIsFocused(false);
+		}, 500); // You can adjust the delay time as needed
 	};
 
 	const [scrolled, setScrolled] = useState<boolean>(false);
@@ -65,6 +69,7 @@ const Nav: React.FC<NavProps> = ({ setSearch, setIsFocused }) => {
 					}}
 					placeholder="Type to search..."
 					size="sm"
+					value={search}
 					onChange={(e) => setSearch(e.target.value)}
 					onFocus={handleFocus}
 					onBlur={handleBlur}

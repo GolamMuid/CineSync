@@ -4,6 +4,8 @@ import { Outlet } from "react-router-dom";
 import { useSearch } from "../hooks/useSearch";
 import { useDebounce } from "@uidotdev/usehooks";
 import SearchCardSmall from "../components/ui/search/SearchCardSmall";
+import { IMovie } from "../types/movie";
+import Loader from "../components/ui/loader/Loader";
 
 function Main() {
 	const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -22,17 +24,36 @@ function Main() {
 	return (
 		<div className="dark w-full bg-blue-rgba text-white min-h-screen">
 			<div className="bg-fixed bg-image">
-				<Nav setSearch={setSearch} setIsFocused={setIsFocused} />
+				<Nav
+					search={search}
+					setSearch={setSearch}
+					setIsFocused={setIsFocused}
+				/>
 				<div className="max-w-[1080px] m-auto">
 					<div
 						className={`${
 							isFocused ? "fixed" : "hidden"
-						} top-72 left-1/2 transform -translate-x-1/2 -translate-y-1/2 <bg-trans></bg-trans> bg-opacity-50 backdrop-blur-md z-30 w-[90vw] h-[400px] overflow-y-scroll  lg:w-[1080px]`}
+						} top-[68px] rounded-lg left-1/2 transform -translate-x-1/2  bg-transparent bg-opacity-50 backdrop-blur-md z-30  ${
+							search.length > 0 ? "h-[400px]" : "h-[80px]"
+						} h-[400px] overflow-y-scroll md:w-[400px]`}
 					>
-						{searchedMovies &&
-							searchedMovies.results.map((movie) => {
-								return <SearchCardSmall movie={movie} setSearch={setSearch} />;
-							})}
+						{search.length === 0 ? (
+							<div className="text-center mt-4">
+								Type the name of a movie to search
+							</div>
+						) : (
+							<div>
+								{isLoading ? (
+									<Loader />
+								) : (
+									<>
+										{searchedMovies?.results?.map((movie: IMovie) => (
+											<SearchCardSmall movie={movie} />
+										))}
+									</>
+								)}
+							</div>
+						)}
 					</div>
 
 					<Outlet />

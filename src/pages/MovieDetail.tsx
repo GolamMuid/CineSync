@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { useEffect } from "react";
 import { Chip, Image } from "@nextui-org/react";
 import { useQuery } from "@tanstack/react-query";
@@ -9,7 +10,6 @@ import Loader from "../components/ui/loader/Loader";
 
 function MovieDetail() {
 	const { id } = useParams();
-	console.log("🚀 ~ file: MovieDetail.tsx:11 ~ MovieDetail ~ id:", id);
 
 	const {
 		isLoading,
@@ -31,6 +31,8 @@ function MovieDetail() {
 		},
 	});
 
+	console.log(movieDetail);
+
 	useEffect(() => {
 		refetch();
 	}, [id, refetch]);
@@ -43,24 +45,37 @@ function MovieDetail() {
 				<Loader />
 			) : (
 				<div className="mt-4">
-					<div className="max-h-[400px] overflow-hidden relative">
-						<img
-							// src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
-							className="hidden md:block"
-						/>
-						<div className="overlay"></div>
-					</div>
+					{movieDetail.backdrop_path !== null && (
+						<div className="max-h-[400px] overflow-hidden relative">
+							<img
+								src={`https://image.tmdb.org/t/p/original${movieDetail.backdrop_path}`}
+								className="hidden md:block"
+							/>
+							<div className="overlay"></div>
+						</div>
+					)}
 
 					<div className="flex flex-col items-start gap-4 md:flex-row">
 						<div className="w-fit p-4">
-							<Image
-								shadow="sm"
-								radius="lg"
-								width="100%"
-								alt={movieDetail.title}
-								className="object-cover m-auto max-w-[500px]"
-								// src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
-							/>
+							{movieDetail?.poster_path === null ? (
+								<Image
+									shadow="sm"
+									radius="lg"
+									width="100%"
+									alt={movieDetail.title}
+									className="object-cover m-auto max-w-[500px]"
+									src={`./no_image.jpg`}
+								/>
+							) : (
+								<Image
+									shadow="sm"
+									radius="lg"
+									width="100%"
+									alt={movieDetail.title}
+									className="object-cover m-auto max-w-[500px]"
+									src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
+								/>
+							)}
 						</div>
 						<div className="flex flex-col gap-2 p-4">
 							<p className="font-bold text-5xl">{movieDetail.original_title}</p>
@@ -78,17 +93,21 @@ function MovieDetail() {
 							</div>
 
 							<div>
-								<span className="font-medium text-[#A5B4FC]"> Budget : </span>
-								{Intl.NumberFormat("en", { notation: "compact" }).format(
-									movieDetail.budget
-								)}
+								<span className="font-medium text-[#A5B4FC]">Budget:</span>{" "}
+								{movieDetail.budget === 0
+									? "Information not available"
+									: Intl.NumberFormat("en", { notation: "compact" }).format(
+											movieDetail.budget
+									  )}
 							</div>
 
 							<div>
 								<span className="font-medium text-[#A5B4FC]"> Revenue : </span>
-								{Intl.NumberFormat("en", { notation: "compact" }).format(
-									movieDetail.revenue
-								)}
+								{movieDetail.revenue === 0
+									? "Information not available"
+									: Intl.NumberFormat("en", { notation: "compact" }).format(
+											movieDetail.revenue
+									  )}
 							</div>
 
 							<div>
