@@ -22,12 +22,12 @@ const MovieCard: React.FC<IMovieCardProps> = ({ movie }) => {
 			<Link to={`/${movie.id}`}>
 				<CardBody className="overflow-visible p-0 ">
 					<Image
-						// shadow="sm"
-						// radius="sm"
+						shadow="sm"
+						radius="sm"
 						width="100%"
 						alt={movie.title}
 						className="w-full object-cover h-[480px] sm:h-[360px]"
-						// src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+						src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 					/>
 				</CardBody>
 				<CardFooter className="text-medium justify-between">
