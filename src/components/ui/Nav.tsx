@@ -52,7 +52,7 @@ const Nav: React.FC<NavProps> = ({ search, setSearch, setIsFocused }) => {
     >
       <NavbarContent>
         <NavbarBrand className="mr-4">
-          <Link to="/" className="block font-bold text-inherit">
+          <Link to="/" className="block font-bold text-lg">
             CineSync
           </Link>
         </NavbarBrand>
@@ -95,26 +95,6 @@ const Nav: React.FC<NavProps> = ({ search, setSearch, setIsFocused }) => {
           </DropdownMenu>
         </Dropdown>
       </NavbarContent>
-      {/* <NavbarContent className="grow-0 justify-end">
-        <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            <Avatar
-              isBordered
-              as="button"
-              className="transition-transform"
-              color="secondary"
-              name="Jason Hughes"
-              size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-            />
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat">
-            <DropdownItem key="logout" color="primary">
-              Log Out
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </NavbarContent> */}
     </Navbar>
   );
 };
