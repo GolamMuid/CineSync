@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { IMovie } from "../../../types/movie";
 
 function SearchCardSmall({ movie }: { movie: IMovie }) {
-  console.log(movie);
   return (
     <Link to={`/${movie.id}`}>
       <Card
@@ -16,13 +15,13 @@ function SearchCardSmall({ movie }: { movie: IMovie }) {
             <div className="relative flex justify-center">
               {movie.poster_path === null ? (
                 <img
-                  alt="Album cover"
+                  alt={movie.title}
                   className="object-cover h-12"
                   src={`./no_image.jpg`}
                 />
               ) : (
                 <img
-                  alt="Album cover"
+                  alt={movie.title}
                   className="object-cover w-full h-20"
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 />
