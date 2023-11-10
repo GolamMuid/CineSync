@@ -27,7 +27,7 @@ function Main() {
           setSearch={setSearch}
           setIsFocused={setIsFocused}
         />
-        <div className="max-w-[1080px] m-auto">
+        <div className="max-w-[1080px] m-auto p-4">
           <div
             className={`${
               isFocused ? "fixed" : "hidden"
@@ -54,9 +54,14 @@ function Main() {
                     </div>
                   </>
                 )}
-                <Link to="/" className="text-center m-auto">
-                  See all results
-                </Link>
+                <div className="flex item-center justify-center p-2">
+                  <Link
+                    to={`/search-results/${search}`}
+                    className="text-center m-auto"
+                  >
+                    See all results
+                  </Link>
+                </div>
               </div>
             )}
           </div>
