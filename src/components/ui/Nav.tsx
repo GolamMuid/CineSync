@@ -76,7 +76,7 @@ const Nav: React.FC<NavProps> = ({ search, setSearch, setIsFocused }) => {
           startContent={<BiSearch size={18} />}
           type="search"
         />
-        <Dropdown placement="bottom-end">
+        {/* <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar
               isBordered
@@ -93,7 +93,7 @@ const Nav: React.FC<NavProps> = ({ search, setSearch, setIsFocused }) => {
               Log Out
             </DropdownItem>
           </DropdownMenu>
-        </Dropdown>
+        </Dropdown> */}
       </NavbarContent>
     </Navbar>
   );
