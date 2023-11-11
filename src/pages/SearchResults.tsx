@@ -3,19 +3,18 @@ import { useParams } from "react-router-dom";
 import { getSearchedMovies } from "../api/api";
 import Loader from "../components/ui/loader/Loader";
 import SearchCardLarge from "../components/ui/search/SearchCardLarge";
+import { IMovie } from "../types/movie";
 
 function SearchResults() {
-  const { name } = useParams();
+  const { name = "" } = useParams();
 
   const { isLoading, data: searchedMovies } = useQuery({
-    queryKey: ["searchedMovies"],
+    queryKey: ["searchedMovies", name],
     queryFn: async () => {
       const res = await getSearchedMovies(name);
-      return res.data; // No need to extract 'data' here
+      return res.data;
     },
   });
-
-  console.log(searchedMovies);
 
   return (
     <div>
@@ -23,8 +22,8 @@ function SearchResults() {
         <Loader />
       ) : (
         <>
-          {searchedMovies?.results.map((movie) => {
-            return <SearchCardLarge movie={movie} />;
+          {searchedMovies?.results.map((movie: IMovie) => {
+            return <SearchCardLarge movie={movie} key={movie.id} />;
           })}
         </>
       )}

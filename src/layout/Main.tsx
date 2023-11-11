@@ -49,7 +49,7 @@ function Main() {
                       {searchedMovies?.results
                         ?.slice(0, 10)
                         .map((movie: IMovie) => (
-                          <SearchCardSmall movie={movie} />
+                          <SearchCardSmall key={movie.id} movie={movie} />
                         ))}
                     </div>
                   </>

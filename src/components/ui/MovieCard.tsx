@@ -6,17 +6,18 @@ import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
 const MovieCard: React.FC<IMovieCardProps> = ({ movie }) => {
-  console.log(movie);
+  // const handleClick = (id: string) => {
+  //   console.log(id);
+  // };
 
-  const handleClick = (id: string) => {
-    console.log(id);
-  };
+  const shortenedTitle =
+    movie.title.length > 15 ? `${movie.title.slice(0, 25)}...` : movie.title;
 
   return (
     <Card
       shadow="sm"
       isPressable
-      onPress={() => handleClick(movie.id)}
+      // onPress={() => handleClick(movie.id)}
       className="w-fit bg-[#00000078] backdrop-blur-sm"
     >
       <Link to={`/${movie.id}`}>
@@ -31,7 +32,7 @@ const MovieCard: React.FC<IMovieCardProps> = ({ movie }) => {
           />
         </CardBody>
         <CardFooter className="text-medium justify-between">
-          <b>{movie.title}</b>
+          <p>{shortenedTitle}</p>
           <div className="flex items-center gap-2">
             <div className="text-default-500">{movie.vote_average}</div>
             <div className="text-base text-yellow-400">

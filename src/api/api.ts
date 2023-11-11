@@ -31,8 +31,6 @@ export const getTopRatedMovies = async () => {
 // ? Get Searched Movies
 
 export const getSearchedMovies = async (searchTerm: string) => {
-  console.log(searchTerm);
-
   const response = await axios.get(
     `https://api.themoviedb.org/3/search/movie?query=${searchTerm}&include_adult=false&language=en-US&page=1`,
     {

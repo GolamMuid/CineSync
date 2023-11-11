@@ -1,7 +1,8 @@
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { Card, CardBody, Image } from "@nextui-org/react";
 import { Link } from "react-router-dom";
+import { IMovieCardProps } from "../../../types/movie";
 
-function SearchCardLarge({ movie }) {
+const SearchCardLarge: React.FC<IMovieCardProps> = ({ movie }) => {
   return (
     <Link to={`/${movie.id}`}>
       <Card shadow="sm" className="w-full mb-4" isPressable>
@@ -25,14 +26,13 @@ function SearchCardLarge({ movie }) {
           <div>
             <div className="font-bold text-lg"> {movie.title} </div>
             <div className="font-bold text-sm">
-              {" "}
-              Release Date: {movie.release_date}{" "}
+              Release Date: {movie.release_date}
             </div>
           </div>
         </CardBody>
       </Card>
     </Link>
   );
-}
+};
 
 export default SearchCardLarge;
