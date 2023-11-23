@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { useEffect } from "react";
 import { Chip, Image } from "@nextui-org/react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "../App.css";
@@ -11,12 +11,14 @@ import Loader from "../components/ui/loader/Loader";
 function MovieDetail() {
   const { id } = useParams();
 
+  const queryClient = useQueryClient();
+
   const {
     isLoading,
     data: movieDetail,
     refetch,
   } = useQuery({
-    queryKey: ["movieDetail"],
+    queryKey: ["movieDetail", id],
     queryFn: async () => {
       const res = await axios.get(
         `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
@@ -29,10 +31,17 @@ function MovieDetail() {
       const data = await res.data;
       return data;
     },
+    enabled: false,
+    onSettled: () => {
+      // Clear the cache for the previous movie
+      queryClient.invalidateQueries({ queryKey: ["movieDetail"] });
+    },
   });
 
   useEffect(() => {
-    refetch();
+    if (id) {
+      refetch();
+    }
   }, [id, refetch]);
 
   // console.log(movieDetail.original_title);

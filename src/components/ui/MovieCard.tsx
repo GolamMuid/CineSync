@@ -34,7 +34,9 @@ const MovieCard: React.FC<IMovieCardProps> = ({ movie }) => {
         <CardFooter className="text-medium justify-between">
           <p>{shortenedTitle}</p>
           <div className="flex items-center gap-2">
-            <div className="text-default-500">{movie.vote_average}</div>
+            <div className="text-default-500">
+              {movie?.vote_average?.toFixed(1)}
+            </div>
             <div className="text-base text-yellow-400">
               <FaStar />
             </div>
