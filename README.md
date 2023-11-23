@@ -1,6 +1,6 @@
-# CineSync
+# FilmyFind
 
-CineSync is a website for searching movie titles and checking out their detail
+FilmyFind is a website for searching movie titles and checking out their detail
 
 ## Available Scripts
 
@@ -14,3 +14,7 @@ Optimize and minify the project for production:
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Live Address
+
+This project is live on [here](https://filmyfind.vercel.app/), have a look.
