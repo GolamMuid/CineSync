@@ -44,7 +44,7 @@ function MovieDetail() {
     }
   }, [id, refetch]);
 
-  // console.log(movieDetail.original_title);
+  console.log(movieDetail);
 
   return (
     <div>
@@ -97,6 +97,14 @@ function MovieDetail() {
               <div>
                 <span className="font-medium text-[#A5B4FC]"> Overview : </span>
                 {movieDetail.overview}
+              </div>
+              <div>
+                <span className="font-medium text-[#A5B4FC]"> Runtime : </span>
+                {movieDetail.runtime ? (
+                  <span> {movieDetail.runtime} min </span>
+                ) : (
+                  "Information not found"
+                )}
               </div>
 
               <div>
